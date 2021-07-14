@@ -18,12 +18,16 @@
 		<h3>Employee Directory</h3>
 		<hr>
 		
-		<p class="h4 mb-4">Add Employee Form</p>
+		<p class="h4 mb-4">Save Employee</p>
 		
 		
 		<form action="#" th:action="@{/employees/save}" 
 						 th:object="${employee}"
 						 method="POST" >
+						 
+			<!--  add hidden form field for id to identify which record is being updated by the form; the hidden field binds to the model attribute
+				  and tells the app which employee to update -->
+			<input type="hidden" th:field="*{id}"/>
 		
 			<input type="text" th:field="*{firstName}"
 				   class="form-control mb-4 col-4" placeholder="First Name"/>
