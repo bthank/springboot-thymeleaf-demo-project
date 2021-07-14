@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -93,6 +94,16 @@ public class EmployeeController {
 	public String updateEmployee(@ModelAttribute("employee") Employee theEmployee) {
 		
 		employeeService.update(theEmployee);
+		
+		// use a redirect to prevent duplicate submissions using a post-redirect-get pattern
+		return "redirect:/employees/list";
+		
+	}
+	
+	@GetMapping("/delete")
+	public String deleteEmployee(@RequestParam("employeeId") int theId) {  // "employeeId" was passed by the form to the controller
+		
+		employeeService.deleteById(theId);
 		
 		// use a redirect to prevent duplicate submissions using a post-redirect-get pattern
 		return "redirect:/employees/list";
