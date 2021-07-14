@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>ThymeLeaf Demo</title>
+	
+	<!--  the @ symbol will reference the context path of application (app root) -->
+	
+	<!-- 
+	
+		Spring Boot will search the following directories in the order specified below for static resources:
+		
+		/src/main/resources
+		
+		1. /META-INF/resources
+		2. /resources
+		3. /static
+		4. /public
+
+	 -->
+	
+	<link rel="stylesheet" th:href="@{/css/demo.css}"/>
+</head>
+<body>
+
+	<!-- ThymeLeaf retrieves theDate from the model that we set up in the Spring MVC controller -->
+	<p th:text="'Time on the server is ' + ${theDate}" class="f1"/>
+
+</body>
+</html>
